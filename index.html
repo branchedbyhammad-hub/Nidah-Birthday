@@ -1,40 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Birthday ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      font-family: Arial;
-      text-align: center;
-      color: white;
-      padding-top: 100px;
-    }
-    h1 {
-      font-size: 50px;
-    }
-    p {
-      font-size: 20px;
-      width: 70%;
-      margin: auto;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 6s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  position: relative;
+  top: 20%;
+  animation: fadeIn 3s ease-in-out;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+p {
+  font-size: 20px;
+  width: 70%;
+  margin: auto;
+  line-height: 1.6;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  color: #ff4b7d;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff4b7d;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+
 </head>
 
 <body>
 
+<div class="container">
   <h1>🎉 Happy Birthday Nidah 🎂</h1>
 
   <p>
-   Ap meri zindagi ka sab se khoobsurat hissa ho ❤️  
-   Shayad main perfect nahi, lekin meri mohabbat Apky liye hamesha sachchi hai.  
-   Aaj ke din sirf ek dua hai ke Ap hamesha khush rahain…  
-
+    You are the most beautiful part of my life ❤️  
+    Maybe I am not perfect, but my love for you is always true.  
+    On this special day, I just pray that you always stay happy…  
+    
   </p>
 
-  <br><br>
-
   <p>💌 I love you more than words can explain.</p>
+
+  <button onclick="forgive()">Click again Happy Born Day 💕</button>
+</div>
+
+<script>
+// hearts generator
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 300);
+
+// button action
+function forgive() {
+  alert("I Always love you so much ❤️");
+}
+</script>
 
 </body>
 </html>
