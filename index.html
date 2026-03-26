@@ -23,6 +23,7 @@
       text-align: center;
       overflow: hidden;
       position: relative;
+      padding: 20px;
     }
 
     h1 {
@@ -94,6 +95,25 @@
         opacity: 0;
       }
     }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+      .love-lines {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      .love-lines {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -133,7 +153,9 @@
       const heart = document.createElement('div');
       heart.classList.add('heart');
       heart.style.left = Math.random() * 100 + '%';
-      heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
+      const size = 10 + Math.random() * 15;
+      heart.style.width = heart.style.height = size + 'px';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
       heartsDiv.appendChild(heart);
 
       setTimeout(() => {
