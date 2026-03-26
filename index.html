@@ -1,141 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Nidah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
-  color: white;
-  overflow: hidden;
-}
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
 
-/* Floating hearts */
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
-  transform: rotate(45deg);
-  animation: float 6s linear infinite;
-}
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
 
-.heart::before,
-.heart::after {
-  content: '';
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-  position: absolute;
-}
+    .love-lines {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 1s;
+    }
 
-.heart::before {
-  top: -10px;
-  left: 0;
-}
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
 
-.heart::after {
-  left: -10px;
-  top: 0;
-}
+    /* Heart animation */
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
 
-@keyframes float {
-  0% {
-    transform: translateY(100vh) rotate(45deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) rotate(45deg);
-    opacity: 0;
-  }
-}
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: floatUp 5s linear infinite;
+    }
 
-.container {
-  position: relative;
-  top: 20%;
-  animation: fadeIn 3s ease-in-out;
-}
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
 
-h1 {
-  font-size: 50px;
-}
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
 
-p {
-  font-size: 20px;
-  width: 70%;
-  margin: auto;
-  line-height: 1.6;
-}
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
 
-button {
-  margin-top: 30px;
-  padding: 12px 25px;
-  font-size: 18px;
-  border: none;
-  border-radius: 25px;
-  background: white;
-  color: #ff4b7d;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #ff4b7d;
-  color: white;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-</style>
-
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-  <h1>🎉 Happy Birthday Nidah 🎂</h1>
+  <div>
+    <h1>Happy Birthday Nidah ❤️</h1>
+    <div class="love-lines" id="love-lines"></div>
+  </div>
 
-  <p>
-    You are the most beautiful part of my life ❤️  
-    Maybe I am not perfect, but my love for you is always true.  
-    On this special day, I just pray that you always stay happy…  
-    
-  </p>
+  <div class="hearts" id="hearts"></div>
 
-  <p>💌 I love you more than words can explain.</p>
+  <script>
+    // Love lines animation
+    const lines = [
+      "You are the sunshine of my life ☀️",
+      "Every moment with you is magic ✨",
+      "I love you more than words can say ❤️",
+      "You make my world brighter 🌸",
+      "Forever yours, always and always 💌"
+    ];
 
-  <button onclick="forgive()">Click again Happy Born Day 💕</button>
-</div>
+    const loveLinesDiv = document.getElementById('love-lines');
+    let index = 0;
 
-<script>
-// hearts generator
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-  document.body.appendChild(heart);
+    function showNextLine() {
+      loveLinesDiv.textContent = lines[index];
+      index = (index + 1) % lines.length;
+    }
 
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
-}
+    showNextLine();
+    setInterval(showNextLine, 3000);
 
-setInterval(createHeart, 300);
+    // Heart animation
+    const heartsDiv = document.getElementById('hearts');
 
-// button action
-function forgive() {
-  alert("I Always love you so much ❤️");
-}
-</script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.width = heart.style.height = (10 + Math.random() * 20) + 'px';
+      heartsDiv.appendChild(heart);
+
+      setTimeout(() => {
+        heartsDiv.removeChild(heart);
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 
 </body>
 </html>
